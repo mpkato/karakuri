@@ -3,13 +3,13 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-role :app, %w{deploy@clusty.mpkato.net}
-role :web, %w{deploy@clusty.mpkato.net}
-role :db,  %w{deploy@clusty.mpkato.net}
-server 'clusty.mpkato.net', user: 'deploy', roles: %w{web app db}
+role :app, %w{deploy@question.mpkato.net}
+role :web, %w{deploy@question.mpkato.net}
+role :db,  %w{deploy@question.mpkato.net}
+server 'question.mpkato.net', user: 'deploy', roles: %w{web app db}
 
 set :ssh_options, {
-  keys: [File.expand_path('~/.ssh/clusty_rsa')],
+  keys: [File.expand_path('~/.ssh/question_rsa')],
   auth_methods: %w(publickey)
 }
 

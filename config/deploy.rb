@@ -2,10 +2,10 @@
 lock '3.4.0'
 set :default_stage, "production"
 
-set :application, 'clusty'
-set :repo_url, 'git@github.com:mpkato/clusty.git'
+set :application, 'questionnaire'
+set :repo_url, 'git@github.com:mpkato/questionnaire.git'
 
-set :deploy_to, '/var/www/clusty'
+set :deploy_to, '/var/www/question'
 set :scm, :git
 set :use_sudo, false
 set :log_level, :debug
