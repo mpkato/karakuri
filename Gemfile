@@ -70,3 +70,8 @@ end
 
 # haml
 gem 'haml-rails'
+
+# production
+group :production do
+  gem 'mysql2'
+end
