@@ -1,0 +1,4 @@
+%p= @task.label
+.html_form
+  = raw(Liquid::Template.parse(@task.html_form).render(@instance.yaml_data))
+

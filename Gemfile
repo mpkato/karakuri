@@ -55,11 +55,13 @@ gem 'bootstrap3-rails'
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 gem 'less-rails'
+gem 'simple_form'
 
 # devise
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'activeadmin', github: 'activeadmin'
+gem 'cancan'
 
 # test
 group :development, :test do
@@ -75,3 +77,7 @@ gem 'haml-rails'
 group :production do
   gem 'mysql2', '0.3.18'
 end
+
+# html
+gem 'ckeditor'
+gem 'liquid'

@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   get 'home/index'
 
   root to: "home#index"
+  resources :tasks do
+    get 'list_instances', controller: :tasks, action: :list_instances
+    get 'show_instance', controller: :tasks, action: :show_instance
+    post 'create_instances', controller: :tasks, action: :create_instances
+    resources 'instances'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

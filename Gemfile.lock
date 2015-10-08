@@ -68,6 +68,7 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
+    cancan (1.6.10)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -83,6 +84,13 @@ GEM
     capistrano-rbenv (2.0.3)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    ckeditor (4.1.3)
+      cocaine
+      orm_adapter (~> 0.5.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -160,6 +168,7 @@ GEM
       sprockets (> 2, < 4)
       tilt
     libv8 (3.16.14.7)
+    liquid (3.0.6)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -250,6 +259,9 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.6.0)
+    simple_form (3.2.0)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     spring (1.3.6)
     sprockets (3.1.0)
       rack (~> 1.0)
@@ -295,11 +307,13 @@ DEPENDENCIES
   activeadmin!
   bootstrap3-rails
   byebug
+  cancan
   capistrano
   capistrano-bundler
   capistrano-passenger
   capistrano-rails
   capistrano-rbenv
+  ckeditor
   coffee-rails (~> 4.1.0)
   devise
   devise-bootstrap-views
@@ -309,12 +323,14 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
+  liquid
   mysql2 (= 0.3.18)
   rails (= 4.2.1)
   rspec
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_form
   spring
   sqlite3
   therubyracer

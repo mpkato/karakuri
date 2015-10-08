@@ -1,0 +1,16 @@
+= render partial: 'instance_form'
+- unless @task.instances.empty?
+  - keys = @task.instances.first.yaml_data.keys
+  %table.table
+    %thead
+      %tr
+        - keys.each do |k|
+          %th= k
+    %tbody
+    - @task.instances.each do |i|
+      %tr
+        - keys.each do |k|
+          %td= i.yaml_data[k]
+- else
+  %div{class: "alert alert-danger", role: "alert"}
+    No instances have been uploaded.

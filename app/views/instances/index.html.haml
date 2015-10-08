@@ -1,0 +1,4 @@
+%p= @task.label
+%ul
+  - @task.instances.each do |i|
+    %li= link_to i.id, task_instance_path(@task, i)
