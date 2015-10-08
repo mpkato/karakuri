@@ -46,15 +46,6 @@ ActiveRecord::Schema.define(version: 20151008044007) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-  create_table "instances", force: :cascade do |t|
-    t.text     "yaml_data"
-    t.integer  "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "instances", ["task_id"], name: "index_instances_on_task_id"
-
   create_table "roles", force: :cascade do |t|
     t.integer  "role_type"
     t.integer  "user_id"
@@ -64,15 +55,25 @@ ActiveRecord::Schema.define(version: 20151008044007) do
 
   add_index "roles", ["user_id"], name: "index_roles_on_user_id"
 
-  create_table "tasks", force: :cascade do |t|
+  create_table "task_templates", force: :cascade do |t|
     t.string   "label"
-    t.text     "html_form"
+    t.string   "title_template"
+    t.text     "form_template"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id"
+  add_index "task_templates", ["user_id"], name: "index_task_templates_on_user_id"
+
+  create_table "tasks", force: :cascade do |t|
+    t.text     "yaml_data"
+    t.integer  "task_template_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "tasks", ["task_template_id"], name: "index_tasks_on_task_template_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

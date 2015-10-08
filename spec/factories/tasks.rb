@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :task do
-    label "MyString"
-html_form "MyText"
-user nil
+    yaml_data "MyText"
+    task_template nil
   end
 
 end

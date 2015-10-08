@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
 
   has_one :role, dependent: :destroy
-  has_many :tasks, dependent: :destroy
+  has_many :task_templates, dependent: :destroy
 
   after_create :create_role
 
