@@ -19,3 +19,24 @@
 = link_to t('.back', :default => t("helpers.links.back")), task_templates_path, :class => 'btn btn-default'
 = link_to t('.edit', :default => t("helpers.links.edit")), edit_task_template_path(@task_template), :class => 'btn btn-default'
 = link_to t('.destroy', :default => t("helpers.links.destroy")), task_template_path(@task_template), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+%hr
+
+= render partial: 'task_form'
+- unless @task_template.tasks.empty?
+  - keys = @task_template.tasks.first.yaml_data.keys
+  %table.table
+    %thead
+      %tr
+        %th Title
+        - keys.each do |key|
+          %th= key
+    %tbody
+    - @task_template.tasks.each do |task|
+      %tr
+        %td=link_to task.render(@task_template.title_template), task_template_task_path(@task_template, task)
+        - keys.each do |key|
+          %td= task.yaml_data[key]
+- else
+  %div{class: "alert alert-danger", role: "alert"}
+    No tasks have been uploaded.

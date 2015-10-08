@@ -1,0 +1,3 @@
+%p= @task.task_template.label
+.html_form
+  = raw(@task.render(@task.task_template.form_template))

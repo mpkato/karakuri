@@ -1,4 +1,4 @@
 %p= @task_template.label
 %ul
-  - @task_template.tasks.each do |t|
+  - @task_template.tasks.each do |task|
     %li= link_to t.id, task_template_task_path(@task_template, t)

@@ -6,11 +6,10 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   resources :task_templates do
-    get 'list_tasks', controller: :task_templates, action: :list_tasks
-    get 'show_task', controller: :task_templates, action: :show_task
-    post 'create_tasks', controller: :task_templates, action: :create_tasks
+    post 'load', controller: :task_templates, action: :load
     resources 'tasks'
   end
+  resources :assigned_tasks
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

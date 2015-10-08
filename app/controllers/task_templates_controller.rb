@@ -63,20 +63,14 @@ class TaskTemplatesController < ApplicationController
     end
   end
 
-  def list_tasks
+  def load
     @task_template = TaskTemplate.find(params[:task_template_id])
-  end
-
-  def show_task
-  end
-
-  def create_tasks
-    @task_template = TaskTemplate.find(params[:task_template_id])
-    @errors = @task_template.upload(params[:task_file])
+    file = params[:task].nil? ? nil : params[:task][:file]
+    @errors = @task_template.upload(file)
     if @errors.empty?
-      redirect_to task_template_list_tasks_path(@task_template), notice: 'Tasks were successfully uploaded.'
+      redirect_to task_template_path(@task_template), notice: 'Tasks were successfully uploaded.'
     else
-      render :list_tasks
+      render :show
     end
   end
 

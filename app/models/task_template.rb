@@ -1,6 +1,8 @@
 class TaskTemplate < ActiveRecord::Base
   belongs_to :user
   has_many :tasks
+  has_many :assigns
+  has_many :assigned_users, through: :assigns, source: :user
   validate :liquid_compatible
   validates_presence_of :title_template
 
