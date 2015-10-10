@@ -11,4 +11,10 @@
       - @task_result.submitted_data.each do |key, val|
         %div{class: 'submitted', data: {name: key, value: val}}
     = raw(@task.render(@task.task_set.task_template.form_template))
-    = f.submit 'Submit', class: 'btn btn-primary'
+    %hr
+    = f.submit 'Save and Next', name: :next, class: 'btn btn-primary btn-lg btn-block'
+    %br
+    %br
+    = f.submit 'Save and Exit', class: 'btn btn-primary'
+    = link_to 'Cancel', tasks_path,
+      data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'

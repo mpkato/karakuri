@@ -10,6 +10,10 @@ class TaskSet < ActiveRecord::Base
   after_save :create_tasks
   validates_presence_of :label
 
+  def finished_task_results
+    TaskResult.joins(:task).where("tasks.task_set_id = ?", id).all
+  end
+
   def create_tasks
     if not @data.nil? and errors.empty?
       tasks.delete_all

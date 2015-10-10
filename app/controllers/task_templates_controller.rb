@@ -29,7 +29,7 @@ class TaskTemplatesController < ApplicationController
     @task_template.user = current_user
     respond_to do |format|
       if @task_template.save
-        format.html { redirect_to @task_template, notice: 'Task template was successfully created.' }
+        format.html { redirect_to task_templates_path, notice: 'Task template was successfully created.' }
         format.json { render :show, status: :created, location: @task_template }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class TaskTemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @task_template.update(task_template_params)
-        format.html { redirect_to @task_template, notice: 'Task template was successfully updated.' }
+        format.html { redirect_to task_templates_path, notice: 'Task template was successfully updated.' }
         format.json { render :show, status: :ok, location: @task_template }
       else
         format.html { render :edit }

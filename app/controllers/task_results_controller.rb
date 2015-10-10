@@ -7,7 +7,9 @@ class TaskResultsController < ApplicationController
     @task_result.task_id = params[:task_id]
     @task_result.submitted_data = task_result_params
     if @task_result.save
-      redirect_to tasks_path, notice: 'Task result was recorded successfully.'
+      next_task = current_user.next_task(params[:task_id])
+      path = (params[:next] and not next_task.nil?) ? task_path(next_task) : tasks_path
+      redirect_to path, notice: 'Task result was recorded successfully.'
     else
       render template: 'tasks/show'
     end
@@ -16,7 +18,9 @@ class TaskResultsController < ApplicationController
   def update
     @task_result = TaskResult.find(params[:id])
     if @task_result.update(submitted_data: task_result_params)
-      redirect_to tasks_path, notice: 'Task result was updated successfully.'
+      next_task = current_user.next_task(params[:task_id])
+      path = (params[:next] and not next_task.nil?) ? task_path(next_task) : tasks_path
+      redirect_to path, notice: 'Task result was updated successfully.'
     else
       render template: 'tasks/show'
     end

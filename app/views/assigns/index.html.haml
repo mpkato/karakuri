@@ -1,17 +1,23 @@
 - breadcrumb :assigns, @task_set
 
-%h1 Listing assigns
+%h1 Assignment
 
 %table{class: 'table table-striped'}
   %thead
     %tr
       %th Username
-      %th #Finished
-      %th 
+      %th #Finished / #Tasks
+      %th Estimated work time
+      %th
   %tbody
     - @task_set.assigns.each do |assign|
       %tr
-        %td= assign.user.username
+        %td= link_to assign.user.username, assign
+        %td
+          - valuenow = @finished_task_results.fetch(assign.user.id, []).size
+          - valuemax = @task_set.tasks.size
+          = progressbar(valuemax, valuenow, "#{valuenow}/#{valuemax}")
+        %td
         %td= link_to 'Delete', assign_path(assign), class: 'btn btn-danger btn-xs',
           method: :delete, data: { confirm: 'Are you sure?' }
 

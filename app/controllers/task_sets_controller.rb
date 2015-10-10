@@ -31,7 +31,8 @@ class TaskSetsController < ApplicationController
 
     respond_to do |format|
       if @task_set.save
-        format.html { redirect_to task_template_path(@task_template), notice: 'Task set was successfully created.' }
+        format.html { redirect_to task_template_task_sets_path(@task_template), 
+          notice: 'Task set was successfully created.' }
         format.json { render :show, status: :created, location: @task_set }
       else
         format.html { render :new }
@@ -45,7 +46,8 @@ class TaskSetsController < ApplicationController
   def update
     respond_to do |format|
       if @task_set.update(task_set_params)
-        format.html { redirect_to [@task_template, @task_set], notice: 'Task set was successfully updated.' }
+        format.html { redirect_to task_template_task_sets_path(@task_set.task_template),
+          notice: 'Task set was successfully updated.' }
         format.json { render :show, status: :ok, location: @task_set }
       else
         format.html { render :edit }
@@ -59,7 +61,8 @@ class TaskSetsController < ApplicationController
   def destroy
     @task_set.destroy
     respond_to do |format|
-      format.html { redirect_to task_sets_url, notice: 'Task set was successfully destroyed.' }
+      format.html { redirect_to task_template_task_sets_path(@task_set.task_template), 
+        notice: 'Task set was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

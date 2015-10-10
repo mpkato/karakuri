@@ -27,6 +27,11 @@ crumb :assigns do |task_set|
   parent :task_set, task_set
 end
 
+crumb :assign do |assign|
+  link assign.user.username, assign_path(assign)
+  parent :assigns, assign.task_set
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

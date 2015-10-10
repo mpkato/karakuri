@@ -1,13 +1,21 @@
 %h1 Assigned tasks
-- @task_sets.each do |task_set|
-  %h2=task_set.label
-  %table.table
-    %thead
-      %tr
-        %th Task
-        %th Finished
-    %tbody
-      - task_set.tasks.each do |task|
+= progressbar(@tasks.size, @task_results.size, "#{@task_results.size}/#{@tasks.size}")
+%ul{class: "nav nav-tabs"}
+  %li{role: "presentation", class: params[:finished] ? "" : "active"}
+    =link_to 'Unfinished', tasks_path
+  %li{role: "presentation", class: params[:finished] ? "active" : ""}
+    =link_to 'Finished', tasks_path(finished: true)
+%table.table
+  %thead
+    %tr
+      %th Task set
+      %th Task
+      %th Finished
+  %tbody
+    - @tasks.each do |task|
+      - finished = @task_results.include?(task.id)
+      - if params[:finished] ? finished : (not finished)
         %tr
-          %td=link_to task.render(task_set.task_template.title_template), task_path(task)
+          %td=task.task_set.label
+          %td=link_to task.render(task.task_set.task_template.title_template), task_path(task)
           %td=@task_results[task.id] and @task_results[task.id].updated_at
