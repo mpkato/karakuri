@@ -3,7 +3,7 @@ class CreateTaskResults < ActiveRecord::Migration
     create_table :task_results do |t|
       t.references :task, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
-      t.text :yaml_data
+      t.text :submitted_data
 
       t.timestamps null: false
     end

@@ -4,6 +4,7 @@ class CreateTaskTemplates < ActiveRecord::Migration
       t.string :label
       t.string :title_template
       t.text :form_template
+      t.integer :task_sets_count, default: 0
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
