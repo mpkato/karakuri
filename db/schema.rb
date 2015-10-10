@@ -48,11 +48,12 @@ ActiveRecord::Schema.define(version: 20151010151317) do
 
   create_table "assigns", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "task_set_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "task_set_id"
   end
 
+  add_index "assigns", ["task_set_id"], name: "index_assigns_on_task_set_id"
   add_index "assigns", ["user_id"], name: "index_assigns_on_user_id"
 
   create_table "behaviors", force: :cascade do |t|
