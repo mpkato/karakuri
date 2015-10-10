@@ -13,10 +13,6 @@
  *= require bootstrap
  *= require bootstrap_and_overrides
  *= require devise_bootstrap_views_less
- *= require custom_bootstrap
  *= require jquery-ui
- *= require peek
- *= require peek/views/rblineprof
- *= require task_results
  *= require_self
  */
