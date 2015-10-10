@@ -66,14 +66,14 @@ ActiveRecord::Schema.define(version: 20151008144908) do
 
   create_table "task_results", force: :cascade do |t|
     t.integer  "task_id"
-    t.integer  "user_id"
     t.text     "submitted_data"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "task_set_id"
+    t.integer  "user_id"
   end
 
   add_index "task_results", ["task_id"], name: "index_task_results_on_task_id"
-  add_index "task_results", ["user_id"], name: "index_task_results_on_user_id"
 
   create_table "task_sets", force: :cascade do |t|
     t.string   "label"
