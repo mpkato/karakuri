@@ -1,18 +1,17 @@
 class TaskSetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task_set, only: [:show, :edit, :update, :destroy]
-  before_action :set_task_template, only: [:new, :create]
+  before_action :set_task_template, only: [:index, :new, :create]
 
   # GET /task_sets
   # GET /task_sets.json
   def index
-    @task_sets = TaskSet.all
+    @task_sets = @task_template.task_sets
   end
 
   # GET /task_sets/1
   # GET /task_sets/1.json
   def show
-    @assign = Assign.new
   end
 
   # GET /task_sets/new

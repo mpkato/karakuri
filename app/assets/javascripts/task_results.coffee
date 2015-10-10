@@ -14,7 +14,6 @@ formUpdate = ->
     name = $(@).data('name')
     value = $(@).data('value')
     $("[name=" + name + "]").each ->
-      console.log(@)
       if $(@).attr('type') == 'radio' or $(@).attr('type') == 'checkbox'
         $(@).val([value])
       else

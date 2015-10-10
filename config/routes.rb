@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :task_templates, shallow: true do
     resources :task_sets, shallow: true do
-      resources :assigns, only: [:create, :destroy]
+      resources :assigns, only: [:index, :create, :destroy]
     end
   end
   resources :tasks do

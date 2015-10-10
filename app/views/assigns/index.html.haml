@@ -1,0 +1,19 @@
+= link_to 'Back', task_template_task_sets_path(@task_set.task_template), class: 'btn btn-default'
+
+%table{class: 'table table-striped'}
+  %thead
+    %tr
+      %th Username
+      %th
+  %tbody
+    - @task_set.assigns.each do |assign|
+      %tr
+        %td= assign.user.username
+        %td= link_to 'Delete', assign_path(assign), class: 'btn btn-danger btn-xs',
+          method: :delete, data: { confirm: 'Are you sure?' }
+
+= simple_form_for [@task_set, @assign] do |f|
+  = f.input :name, url: users_autocomplete_user_username_path,
+    as: :autocomplete
+  = f.submit nil, class: 'btn btn-primary'
+

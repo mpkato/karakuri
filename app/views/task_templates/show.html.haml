@@ -21,18 +21,3 @@
 = link_to t('.destroy', :default => t("helpers.links.destroy")), task_template_path(@task_template), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 
 %hr
-
-= link_to 'New Task Set', new_task_template_task_set_path(@task_template), class: 'btn btn-primary'
-
-- unless @task_template.task_sets.empty?
-  %table.table
-    %thead
-      %tr
-        %th Task sets
-    %tbody
-    - @task_template.task_sets.each do |task_set|
-      %tr
-        %td=link_to task_set.label, task_set_path(task_set)
-- else
-  %div{class: "alert alert-danger", role: "alert"}
-    No tasks have been uploaded.

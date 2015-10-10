@@ -1,23 +1,10 @@
-= simple_form_for [@task_set, @assign] do |f|
-  = f.input :name, url: users_autocomplete_user_username_path,
-    as: :autocomplete
-  = f.submit nil, class: 'btn btn-primary'
-
-%ul
-  - @task_set.assigns.each do |assign|
-    %li
-      = assign.user.username
-      = link_to 'Delete', assign_path(assign), class: 'btn btn-danger btn-xs',
-        method: :delete, data: { confirm: 'Are you sure?' }
-
-%hr
-
+= link_to 'Back', task_template_task_sets_path(@task_set.task_template), class: 'btn btn-default'
 %p
   %b Label:
   = @task_set.label
 
 - keys = @task_set.tasks.first.yaml_data.keys
-%table.table
+%table{class: "table table-striped"}
   %thead
     %tr
       %th Title
@@ -30,6 +17,6 @@
       - keys.each do |key|
         %td= task.yaml_data[key]
 
-= link_to 'Edit', edit_task_set_path(@task_set)
-\|
-= link_to 'Back', task_template_path(@task_set.task_template)
+= link_to 'Edit', edit_task_set_path(@task_set), class: 'btn btn-default'
+= link_to 'Delete', task_set_path(@task_set), method: "delete", 
+  data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'

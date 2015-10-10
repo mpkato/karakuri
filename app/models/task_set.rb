@@ -1,7 +1,7 @@
 class TaskSet < ActiveRecord::Base
   belongs_to :task_template
   has_many :tasks
-  has_many :assigns
+  has_many :assigns, dependent: :destroy
   has_many :assigned_users, through: :assigns, source: :user
 
   attr_accessor :task_file

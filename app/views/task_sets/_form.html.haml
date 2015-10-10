@@ -2,9 +2,7 @@
   multipart: true) do |f|
   = f.error_notification
 
-  .form-inputs
-    = f.input :label
-    = f.input :task_file, as: :file
+  = f.input :label
+  = f.input :task_file, as: :file
 
-  .form-actions
-    = f.button :submit
+  = f.submit nil, class: 'btn btn-primary'

@@ -27,7 +27,6 @@ class TaskTemplatesController < ApplicationController
   def create
     @task_template = TaskTemplate.new(task_template_params)
     @task_template.user = current_user
-
     respond_to do |format|
       if @task_template.save
         format.html { redirect_to @task_template, notice: 'Task template was successfully created.' }

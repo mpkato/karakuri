@@ -1,18 +1,28 @@
 class AssignsController < ApplicationController
+  def index
+    @task_set = TaskSet.find(params[:task_set_id])
+    @assign = Assign.new
+  end
+
   def create
-    user = User.find_by(username: params[:assign][:name])
-    task_set = TaskSet.find(params[:task_set_id])
-    if user.nil?
-      redirect_to task_set_path(task_set), alert: 'User not found'
+    @task_set = TaskSet.find(params[:task_set_id])
+    @assign = Assign.new(assign_params)
+    @assign.task_set_id = @task_set.id
+    if @assign.save
+      redirect_to task_set_assigns_path(@task_set), notice: 'Assinged successfully'
     else
-      user.assigned_task_sets << task_set
-      redirect_to task_set_path(task_set), notice: 'Assinged successfully'
+      render :index
     end
   end
 
   def destroy
     assign = Assign.find(params[:id])
-    assign.destroy
-    redirect_to task_set_path(assign.task_set), notice: 'Unassigned successfully'
+    assign.destroy!
+    redirect_to task_set_assigns_path(assign.task_set), notice: 'Unassigned successfully'
   end
+
+  private
+    def assign_params
+      params.require(:assign).permit(:name)
+    end
 end

@@ -16,5 +16,8 @@
 //= require autocomplete-rails
 //= require twitter/bootstrap
 //= require turbolinks
-//= require ckeditor/init
+//= require ace/ace
+//= require ace/theme-monokai
+//= require ace/mode-liquid
+//= require jquery-ace.min
 //= require_tree .
