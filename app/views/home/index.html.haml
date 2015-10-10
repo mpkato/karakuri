@@ -1,2 +1,17 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.erb
+%h1 Questionnaire
+%p.lead You may easily create questionnaires and ask guests to answer them.
+%p.lead
+  Please first sign up at
+  = link_to 'Sign up', new_user_registration_path, class: 'btn btn-default btn-lg'
+
+%h2 For invitees
+%p
+  Please visit
+  = link_to 'Tasks', tasks_path, class: 'btn btn-default btn-sm'
+  and complete assigned tasks.
+
+%h2 For inviters
+%p
+  Please visit
+  = link_to 'Templates', task_templates_path, class: 'btn btn-default btn-sm'
+  , upload task sets, and assign them to invitees.
