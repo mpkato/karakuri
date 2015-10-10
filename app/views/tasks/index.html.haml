@@ -1,4 +1,13 @@
-%p= @task_template.label
-%ul
-  - @task_template.tasks.each do |task|
-    %li= link_to t.id, task_template_task_path(@task_template, t)
+%h1 Assigned tasks
+- @task_sets.each do |task_set|
+  %h2=task_set.label
+  %table.table
+    %thead
+      %tr
+        %th Task
+        %th Finished
+    %tbody
+      - task_set.tasks.each do |task|
+        %tr
+          %td=link_to task.render(task_set.task_template.title_template), task_path(task)
+          %td=@task_results[task.id] and @task_results[task.id].updated_at

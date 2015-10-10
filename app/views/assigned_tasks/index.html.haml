@@ -1,6 +1,6 @@
 %h1 Assigned tasks
-- @task_templates.each do |task_template|
-  %h2=task_template.label
+- @task_sets.each do |task_set|
+  %h2=task_set.label
   %ul
-    - task_template.tasks.each do |task|
-      %li=link_to task.render(task_template.title_template), assigned_task_path(task)
+    - task_set.tasks.each do |task|
+      %li=link_to task.render(task_set.task_template.title_template), task_path(task)

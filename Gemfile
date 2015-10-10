@@ -81,3 +81,6 @@ end
 # html
 gem 'ckeditor'
 gem 'liquid'
+
+# autocomplete
+gem 'rails4-autocomplete'

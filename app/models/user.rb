@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   has_one :role, dependent: :destroy
   has_many :task_templates, dependent: :destroy
   has_many :assigns
-  has_many :assigned_task_templates, through: :assigns, source: :task_template
+  has_many :assigned_task_sets, through: :assigns, source: :task_set
+  has_many :task_results
 
   after_create :create_role
 

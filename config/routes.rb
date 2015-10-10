@@ -5,11 +5,19 @@ Rails.application.routes.draw do
   get 'home/index'
 
   root to: "home#index"
-  resources :task_templates do
-    post 'load', controller: :task_templates, action: :load
-    resources 'tasks'
+  resources :task_templates, shallow: true do
+    resources :task_sets, shallow: true do
+      resources :assigns, only: [:create, :destroy]
+    end
   end
-  resources :assigned_tasks
+  resources :tasks do
+    resources :task_results, only: [:create, :update]
+  end
+  #resources :assigned_tasks, shallow: true do
+  #end
+  namespace :users do
+    get :autocomplete_user_username
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

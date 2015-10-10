@@ -1,3 +1,14 @@
-%p= @task_template.label
+-# form_url = @task_result.user.nil? ? task_task_results_path(@task) : task_result_path(@task_result)
+%h1= @task.render(@task.task_set.task_template.title_template)
 .html_form
-  = raw(@task.render(@task_template.form_template))
+  = simple_form_for @task_result, url: polymorphic_path([@task, @task_result]) do |f|
+    - if @task_result.errors.any?
+      %div{class: "alert alert-danger", role: "alert"}
+        There are some blank fields
+        - @task_result.errors.each do |name, msg|
+          %div{class: 'error', data: {name: name, error: msg}}
+    - unless @task_result.submitted_data.nil?
+      - @task_result.submitted_data.each do |key, val|
+        %div{class: 'submitted', data: {name: key, value: val}}
+    = raw(@task.render(@task.task_set.task_template.form_template))
+    = f.submit 'Submit', class: 'btn btn-primary'

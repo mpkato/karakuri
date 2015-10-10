@@ -22,21 +22,17 @@
 
 %hr
 
-= render partial: 'task_form'
-- unless @task_template.tasks.empty?
-  - keys = @task_template.tasks.first.yaml_data.keys
+= link_to 'New Task Set', new_task_template_task_set_path(@task_template), class: 'btn btn-primary'
+
+- unless @task_template.task_sets.empty?
   %table.table
     %thead
       %tr
-        %th Title
-        - keys.each do |key|
-          %th= key
+        %th Task sets
     %tbody
-    - @task_template.tasks.each do |task|
+    - @task_template.task_sets.each do |task_set|
       %tr
-        %td=link_to task.render(@task_template.title_template), task_template_task_path(@task_template, task)
-        - keys.each do |key|
-          %td= task.yaml_data[key]
+        %td=link_to task_set.label, task_set_path(task_set)
 - else
   %div{class: "alert alert-danger", role: "alert"}
     No tasks have been uploaded.

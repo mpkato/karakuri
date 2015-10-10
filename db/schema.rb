@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008064353) do
+ActiveRecord::Schema.define(version: 20151008144908) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -48,12 +48,11 @@ ActiveRecord::Schema.define(version: 20151008064353) do
 
   create_table "assigns", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "task_template_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "task_set_id"
   end
 
-  add_index "assigns", ["task_template_id"], name: "index_assigns_on_task_template_id"
   add_index "assigns", ["user_id"], name: "index_assigns_on_user_id"
 
   create_table "roles", force: :cascade do |t|
@@ -64,6 +63,26 @@ ActiveRecord::Schema.define(version: 20151008064353) do
   end
 
   add_index "roles", ["user_id"], name: "index_roles_on_user_id"
+
+  create_table "task_results", force: :cascade do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.text     "submitted_data"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "task_results", ["task_id"], name: "index_task_results_on_task_id"
+  add_index "task_results", ["user_id"], name: "index_task_results_on_user_id"
+
+  create_table "task_sets", force: :cascade do |t|
+    t.string   "label"
+    t.integer  "task_template_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "task_sets", ["task_template_id"], name: "index_task_sets_on_task_template_id"
 
   create_table "task_templates", force: :cascade do |t|
     t.string   "label"
@@ -78,12 +97,10 @@ ActiveRecord::Schema.define(version: 20151008064353) do
 
   create_table "tasks", force: :cascade do |t|
     t.text     "yaml_data"
-    t.integer  "task_template_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "task_set_id"
   end
-
-  add_index "tasks", ["task_template_id"], name: "index_tasks_on_task_template_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

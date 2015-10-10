@@ -1,0 +1,10 @@
+= simple_form_for(@task_set, url: polymorphic_path([@task_template, @task_set]), 
+  multipart: true) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :label
+    = f.input :task_file, as: :file
+
+  .form-actions
+    = f.button :submit

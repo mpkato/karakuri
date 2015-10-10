@@ -63,17 +63,6 @@ class TaskTemplatesController < ApplicationController
     end
   end
 
-  def load
-    @task_template = TaskTemplate.find(params[:task_template_id])
-    file = params[:task].nil? ? nil : params[:task][:file]
-    @errors = @task_template.upload(file)
-    if @errors.empty?
-      redirect_to task_template_path(@task_template), notice: 'Tasks were successfully uploaded.'
-    else
-      render :show
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task_template

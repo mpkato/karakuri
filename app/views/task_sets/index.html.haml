@@ -1,0 +1,23 @@
+%h1 Listing task_sets
+
+%table
+  %thead
+    %tr
+      %th Label
+      %th Task template
+      %th
+      %th
+      %th
+
+  %tbody
+    - @task_sets.each do |task_set|
+      %tr
+        %td= task_set.label
+        %td= task_set.task_template
+        %td= link_to 'Show', task_set
+        %td= link_to 'Edit', edit_task_set_path(task_set)
+        %td= link_to 'Destroy', task_set, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Task set', new_task_set_path
