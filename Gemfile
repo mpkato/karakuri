@@ -61,7 +61,6 @@ gem 'simple_form'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'activeadmin', github: 'activeadmin'
-gem 'cancan'
 
 # test
 group :development, :test do
@@ -79,7 +78,6 @@ group :production do
 end
 
 # html
-gem 'ckeditor'
 gem 'liquid'
 gem 'jquery-ace-rails'
 
