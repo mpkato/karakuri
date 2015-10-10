@@ -16,6 +16,8 @@
 //= require autocomplete-rails
 //= require twitter/bootstrap
 //= require turbolinks
+//= require peek
+//= require peek/views/rblineprof
 //= require ace/ace
 //= require ace/theme-monokai
 //= require ace/mode-liquid

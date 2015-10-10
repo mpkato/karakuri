@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  belongs_to :task_set
+  belongs_to :task_set, counter_cache: true
   has_many :task_results
   serialize :yaml_data
 

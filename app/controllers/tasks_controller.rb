@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tasks = current_user.assigned_tasks
+    @tasks = current_user.assigned_tasks.includes(task_set: :task_template)
     @task_results = current_user.assigned_task_results.index_by(&:task_id)
   end
 

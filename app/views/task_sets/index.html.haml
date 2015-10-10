@@ -16,13 +16,13 @@
     %tr
       %td=task_set.id
       %td=link_to task_set.label, task_set_path(task_set)
-      %td=task_set.tasks.size
+      %td=task_set.tasks_count
       %td=l task_set.created_at
       %td
         = link_to task_set_assigns_path(task_set), class: 'btn btn-info btn-xs' do
           Assignment
           %span.badge
-            = task_set.assigns.size
+            = task_set.assigns_count
       %td
         = link_to 'Edit', edit_task_set_path(task_set), class: 'btn btn-default btn-xs'
         = link_to 'Destroy', task_set_path(task_set), method: :delete, data: { confirm: 'Are you sure?' },

@@ -3,7 +3,7 @@ class AssignsController < ApplicationController
   before_filter :set_assign, only: [:show, :destroy]
 
   def index
-    @task_set = TaskSet.find(params[:task_set_id])
+    @task_set = TaskSet.includes(assigns: :user).find(params[:task_set_id])
     @finished_task_results = @task_set.finished_task_results.group_by(&:user_id)
     @assign = Assign.new
   end

@@ -1,6 +1,6 @@
 class Assign < ActiveRecord::Base
   belongs_to :user
-  belongs_to :task_set
+  belongs_to :task_set, counter_cache: true
   before_save :set_user
 
   attr_accessor :name

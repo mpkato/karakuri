@@ -1,5 +1,5 @@
 class TaskSet < ActiveRecord::Base
-  belongs_to :task_template
+  belongs_to :task_template, counter_cache: true
   has_many :tasks
   has_many :assigns, dependent: :destroy
   has_many :assigned_users, through: :assigns, source: :user

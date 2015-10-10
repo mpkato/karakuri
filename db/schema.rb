@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010133133) do
+ActiveRecord::Schema.define(version: 20151010151317) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -80,8 +80,10 @@ ActiveRecord::Schema.define(version: 20151010133133) do
   create_table "task_sets", force: :cascade do |t|
     t.string   "label"
     t.integer  "task_template_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "tasks_count",      default: 0
+    t.integer  "assigns_count",    default: 0
   end
 
   add_index "task_sets", ["task_template_id"], name: "index_task_sets_on_task_template_id"
@@ -91,8 +93,9 @@ ActiveRecord::Schema.define(version: 20151010133133) do
     t.string   "title_template"
     t.text     "form_template"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "task_sets_count", default: 0
   end
 
   add_index "task_templates", ["user_id"], name: "index_task_templates_on_user_id"
