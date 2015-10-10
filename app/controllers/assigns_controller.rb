@@ -1,4 +1,6 @@
 class AssignsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @task_set = TaskSet.find(params[:task_set_id])
     @assign = Assign.new

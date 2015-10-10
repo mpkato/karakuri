@@ -1,8 +1,6 @@
 class TaskResultsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task
-  DEFAULT_PARAMS = ['controller', 'utf8', 'authenticity_token',
-    'action', 'commit', 'task_id']
 
   def create
     @task_result = current_user.task_results.build

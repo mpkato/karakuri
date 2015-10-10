@@ -85,3 +85,6 @@ gem 'jquery-ace-rails'
 
 # autocomplete
 gem 'rails4-autocomplete'
+
+# breadcrumbs
+gem 'gretel'
