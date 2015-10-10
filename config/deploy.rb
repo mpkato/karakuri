@@ -20,6 +20,9 @@ set :rbenv_roles, :all
 
 set :bundle_without, [:development]
 
+# for speed up assets:precompile
+set :shared_children, ['system', 'log', 'pids', 'tmp/cache']
+
 namespace :deploy do
 
   after :restart, :clear_cache do

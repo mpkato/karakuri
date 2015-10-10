@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010151317) do
+ActiveRecord::Schema.define(version: 20151010133133) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 20151010151317) do
   create_table "task_sets", force: :cascade do |t|
     t.string   "label"
     t.integer  "task_template_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
     t.integer  "tasks_count",      default: 0
     t.integer  "assigns_count",    default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "task_sets", ["task_template_id"], name: "index_task_sets_on_task_template_id"
@@ -93,22 +93,25 @@ ActiveRecord::Schema.define(version: 20151010151317) do
     t.string   "label"
     t.string   "title_template"
     t.text     "form_template"
+    t.integer  "task_sets_count", default: 0
     t.integer  "user_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "task_sets_count", default: 0
   end
 
   add_index "task_templates", ["user_id"], name: "index_task_templates_on_user_id"
 
   create_table "tasks", force: :cascade do |t|
     t.text     "yaml_data"
+    t.integer  "task_set_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "task_set_id"
   end
 
+  add_index "tasks", ["task_set_id"], name: "index_tasks_on_task_set_id"
+
   create_table "users", force: :cascade do |t|
+    t.string   "username"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -121,10 +124,10 @@ ActiveRecord::Schema.define(version: 20151010151317) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username"
 
 end
