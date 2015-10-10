@@ -1,5 +1,0 @@
-%h1= @task.render(@task.task_set.task_template.title_template)
-.html_form
-  = simple_form_for @task_result, url: polymorphic_path([@task, @task_result]) do |f|
-    = raw(@task.render(@task.task_set.task_template.form_template))
-    = f.submit 'Submit', class: 'btn btn-primary'
