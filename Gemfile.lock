@@ -57,6 +57,7 @@ GEM
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (6.0.0)
+    atomic (1.1.99)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -66,6 +67,9 @@ GEM
       sass (~> 3.4)
       thor
     builder (3.2.2)
+    bullet (4.14.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (5.0.0)
       columnize (= 0.9.0)
     cancan (1.6.10)
@@ -101,7 +105,12 @@ GEM
     colorize (0.7.7)
     columnize (0.9.0)
     commonjs (0.2.7)
+    config (1.0.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.0)
     debug_inspector (0.0.2)
+    debugger-ruby_core_source (1.3.8)
+    deep_merge (1.0.1)
     devise (3.5.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -187,9 +196,17 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
+    peek (0.1.10)
+      atomic (>= 1.0.0)
+      railties (>= 3.0.0)
+    peek-rblineprof (0.1.2)
+      peek
+      rblineprof
     polyamorous (1.2.0)
       activerecord (>= 3.0)
     rack (1.6.1)
+    rack-mini-profiler (0.9.7)
+      rack (>= 1.1.3)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -225,6 +242,8 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.2)
+    rblineprof (0.3.6)
+      debugger-ruby_core_source (~> 1.3)
     rdoc (4.2.0)
       json (~> 1.4)
     ref (1.0.5)
@@ -297,6 +316,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.9.0)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.1.2)
@@ -311,6 +331,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   bootstrap3-rails
+  bullet
   byebug
   cancan
   capistrano
@@ -320,6 +341,7 @@ DEPENDENCIES
   capistrano-rbenv
   ckeditor
   coffee-rails (~> 4.1.0)
+  config
   devise
   devise-bootstrap-views
   factory_girl_rails
@@ -332,6 +354,9 @@ DEPENDENCIES
   less-rails
   liquid
   mysql2 (= 0.3.18)
+  peek
+  peek-rblineprof
+  rack-mini-profiler
   rails (= 4.2.1)
   rails4-autocomplete
   rspec

@@ -33,4 +33,12 @@ class User < ActiveRecord::Base
   def finished_task_results(task_set)
     task_results.joins(:task).where("tasks.task_set_id = ?", task_set.id).all
   end
+
+  def active_time_points(task_set)
+    Behavior.joins(task: :task_set).where("task_sets.id = ?", task_set.id).all
+  end
+
+  def estimated_work_time(task_set)
+    (active_time_points(task_set).size * Settings.behavior.time_interval) / 1000.0
+  end
 end

@@ -1,5 +1,6 @@
 -# form_url = @task_result.user.nil? ? task_task_results_path(@task) : task_result_path(@task_result)
 %h1= @task.render(@task.task_set.task_template.title_template)
+#behavior{data: {url: task_behaviors_path(@task), time: Settings.behavior.time_interval}}
 .html_form
   = simple_form_for @task_result, url: polymorphic_path([@task, @task_result]) do |f|
     - if @task_result.errors.any?

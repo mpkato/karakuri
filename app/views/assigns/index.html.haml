@@ -7,7 +7,7 @@
     %tr
       %th Username
       %th #Finished / #Tasks
-      %th Estimated work time
+      %th Estimated work time (s)
       %th
   %tbody
     - @task_set.assigns.each do |assign|
@@ -17,7 +17,7 @@
           - valuenow = @finished_task_results.fetch(assign.user.id, []).size
           - valuemax = @task_set.tasks.size
           = progressbar(valuemax, valuenow, "#{valuenow}/#{valuemax}")
-        %td
+        %td=assign.user.estimated_work_time(@task_set)
         %td= link_to 'Delete', assign_path(assign), class: 'btn btn-danger btn-xs',
           method: :delete, data: { confirm: 'Are you sure?' }
 

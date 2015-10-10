@@ -88,3 +88,14 @@ gem 'rails4-autocomplete'
 
 # breadcrumbs
 gem 'gretel'
+
+# config
+gem 'config'
+
+# tuning
+group :development do
+  gem 'rack-mini-profiler'
+  gem 'peek'
+  gem 'peek-rblineprof'
+  gem 'bullet'
+end

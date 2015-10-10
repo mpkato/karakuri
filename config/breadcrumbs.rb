@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :task_templates do
-  link 'Task templates', task_templates_path
+  link content_tag(:b, 'Task templates'), task_templates_path
   parent :root
 end
 
@@ -13,7 +13,7 @@ crumb :task_template do |task_template|
 end
 
 crumb :task_sets do |task_template|
-  link 'Task sets', task_template_task_sets_path(task_template)
+  link content_tag(:b, 'Task sets'), task_template_task_sets_path(task_template)
   parent :task_template, task_template
 end
 
@@ -23,7 +23,7 @@ crumb :task_set do |task_set|
 end
 
 crumb :assigns do |task_set|
-  link 'Assignment', task_set_assigns_path(task_set)
+  link content_tag(:b, 'Assignment'), task_set_assigns_path(task_set)
   parent :task_set, task_set
 end
 

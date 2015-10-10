@@ -12,9 +12,8 @@ Rails.application.routes.draw do
   end
   resources :tasks do
     resources :task_results, only: [:create, :update]
+    resources :behaviors, only: :create
   end
-  #resources :assigned_tasks, shallow: true do
-  #end
   namespace :users do
     get :autocomplete_user_username
   end
