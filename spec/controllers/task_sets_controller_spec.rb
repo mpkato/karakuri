@@ -24,6 +24,7 @@ RSpec.describe TaskSetsController, type: :controller do
   # TaskSet. As you add validations to TaskSet, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
+    #{label: 'Label'}
     skip("Add a hash of attributes valid for your model")
   }
 
@@ -54,7 +55,8 @@ RSpec.describe TaskSetsController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new task_set as @task_set" do
-      get :new, {}, valid_session
+      task_template = create(:task_template)
+      get :new, {task_template_id: task_template.id}, valid_session
       expect(assigns(:task_set)).to be_a_new(TaskSet)
     end
   end
