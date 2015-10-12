@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "task_sets/index", type: :view do
+  pending "add some examples to (or delete) #{__FILE__}"
+<<EOS
   before(:each) do
     assign(:task_sets, [
       TaskSet.create!(
@@ -19,4 +21,5 @@ RSpec.describe "task_sets/index", type: :view do
     assert_select "tr>td", :text => "Label".to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2
   end
+EOS
 end

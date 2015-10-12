@@ -23,136 +23,94 @@ RSpec.describe TasksController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Task. As you add validations to Task, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+  let(:user) {
+    create(:user)
   }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+  let(:task_template) {
+    create(:task_template, user_id: user.id)
   }
 
+  let(:task_set) {
+    create(:task_set, task_template_id: task_template.id)
+  }
+
+  let!(:assign) {
+    create(:assign, task_set_id: task_set.id, name: user.username)
+  }
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TasksController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { sign_in user }
 
   describe "GET #index" do
     it "assigns all tasks as @tasks" do
-      task = Task.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:tasks)).to eq([task])
+      expect(assigns(:tasks)).to eq(task_set.tasks)
     end
   end
 
   describe "GET #show" do
+    let(:task) { task_set.tasks.first }
     it "assigns the requested task as @task" do
-      task = Task.create! valid_attributes
       get :show, {:id => task.to_param}, valid_session
       expect(assigns(:task)).to eq(task)
+    end
+
+    it "assigns a new task result as @task_result" do
+      get :show, {:id => task.to_param}, valid_session
+      expect(assigns(:task_result)).to be_a_new(TaskResult)
+    end
+
+    context "with a task result created" do
+      let!(:task_result) { create(:task_result, task_id: task.id, user_id: user.id) }
+      it "assigns the task result as @task_result" do
+        get :show, {:id => task.to_param}, valid_session
+        expect(assigns(:task_result)).to eq(task_result)
+      end
     end
   end
 
   describe "GET #new" do
-    it "assigns a new task as @task" do
-      get :new, {}, valid_session
-      expect(assigns(:task)).to be_a_new(Task)
+    it "is not found" do
+      expect{get :new, {}, valid_session}.to\
+        raise_error(ActionController::UrlGenerationError)
     end
   end
 
   describe "GET #edit" do
-    it "assigns the requested task as @task" do
-      task = Task.create! valid_attributes
-      get :edit, {:id => task.to_param}, valid_session
-      expect(assigns(:task)).to eq(task)
+    let(:task) { task_set.tasks.first }
+    it "is not found" do
+      expect{get :edit, {:id => task.to_param}, valid_session}.to\
+        raise_error(ActionController::UrlGenerationError)
     end
   end
 
   describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Task" do
-        expect {
-          post :create, {:task => valid_attributes}, valid_session
-        }.to change(Task, :count).by(1)
-      end
-
-      it "assigns a newly created task as @task" do
-        post :create, {:task => valid_attributes}, valid_session
-        expect(assigns(:task)).to be_a(Task)
-        expect(assigns(:task)).to be_persisted
-      end
-
-      it "redirects to the created task" do
-        post :create, {:task => valid_attributes}, valid_session
-        expect(response).to redirect_to(Task.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved task as @task" do
-        post :create, {:task => invalid_attributes}, valid_session
-        expect(assigns(:task)).to be_a_new(Task)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:task => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
+    it "is not found" do
+      expect{get :create, {task: {}}, valid_session}.to\
+        raise_error(ActionController::UrlGenerationError)
     end
   end
 
   describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested task" do
-        task = Task.create! valid_attributes
-        put :update, {:id => task.to_param, :task => new_attributes}, valid_session
-        task.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested task as @task" do
-        task = Task.create! valid_attributes
-        put :update, {:id => task.to_param, :task => valid_attributes}, valid_session
-        expect(assigns(:task)).to eq(task)
-      end
-
-      it "redirects to the task" do
-        task = Task.create! valid_attributes
-        put :update, {:id => task.to_param, :task => valid_attributes}, valid_session
-        expect(response).to redirect_to(task)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the task as @task" do
-        task = Task.create! valid_attributes
-        put :update, {:id => task.to_param, :task => invalid_attributes}, valid_session
-        expect(assigns(:task)).to eq(task)
-      end
-
-      it "re-renders the 'edit' template" do
-        task = Task.create! valid_attributes
-        put :update, {:id => task.to_param, :task => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
+    let(:task) { task_set.tasks.first }
+    let(:another_task_set) { create(:task_set, task_template_id: task_template.id) }
+    let(:new_attributes) {
+      attributes_for(:task, task_set_id: another_task_set.id)
+    }
+    it "is not found" do
+      expect{put :update, {:id => task.to_param, 
+        task: new_attributes}, valid_session}.to\
+        raise_error(ActionController::UrlGenerationError)
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested task" do
-      task = Task.create! valid_attributes
-      expect {
-        delete :destroy, {:id => task.to_param}, valid_session
-      }.to change(Task, :count).by(-1)
-    end
-
-    it "redirects to the tasks list" do
-      task = Task.create! valid_attributes
-      delete :destroy, {:id => task.to_param}, valid_session
-      expect(response).to redirect_to(tasks_url)
+    let(:task) { task_set.tasks.first }
+    it "is not found" do
+      expect{delete :destroy, {:id => task.to_param}, valid_session}.to\
+        raise_error(ActionController::UrlGenerationError)
     end
   end
 

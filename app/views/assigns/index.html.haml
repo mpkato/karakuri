@@ -10,7 +10,7 @@
       %th Estimated work time (s)
       %th
   %tbody
-    - @task_set.assigns.each do |assign|
+    - @assigns.each do |assign|
       %tr
         %td= link_to assign.user.username, assign
         %td

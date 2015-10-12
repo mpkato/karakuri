@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :assigns, only: [:index, :show, :create, :destroy]
     end
   end
-  resources :tasks do
+  resources :tasks, only: [:index, :show] do
     resources :task_results, only: [:create, :update]
     resources :behaviors, only: :create
   end

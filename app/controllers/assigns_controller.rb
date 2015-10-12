@@ -4,6 +4,7 @@ class AssignsController < ApplicationController
 
   def index
     @task_set = TaskSet.includes(assigns: :user).find(params[:task_set_id])
+    @assigns = @task_set.assigns
     @finished_task_results = @task_set.finished_task_results.group_by(&:user_id)
     @assign = Assign.new
   end
@@ -26,7 +27,7 @@ class AssignsController < ApplicationController
 
   def destroy
     @assign.destroy!
-    redirect_to task_set_assigns_path(assign.task_set), notice: 'Unassigned successfully'
+    redirect_to task_set_assigns_path(@assign.task_set), notice: 'Unassigned successfully'
   end
 
   private

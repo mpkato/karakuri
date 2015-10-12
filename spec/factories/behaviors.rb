@@ -1,8 +1,6 @@
 FactoryGirl.define do
   factory :behavior do
-    status 1
-task nil
-user nil
+    status 0
   end
 
 end

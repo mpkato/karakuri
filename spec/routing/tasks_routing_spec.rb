@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe TasksController, type: :routing do
+  pending "add some examples to (or delete) #{__FILE__}"
+<<EOS
   describe "routing" do
 
     it "routes to #index" do
@@ -32,4 +34,5 @@ RSpec.describe TasksController, type: :routing do
     end
 
   end
+EOS
 end
