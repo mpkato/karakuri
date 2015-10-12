@@ -2,6 +2,7 @@ class Task < ActiveRecord::Base
   belongs_to :task_set, counter_cache: true
   has_many :task_results
   serialize :yaml_data
+  validates_presence_of :task_set_id, :yaml_data
 
   def render(template)
     return Liquid::Template.parse(template).render(yaml_data)

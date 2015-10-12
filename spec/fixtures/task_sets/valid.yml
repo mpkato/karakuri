@@ -1,0 +1,59 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+-
+  qid: MC2-J-0001
+  query: ハルク・ホーガン
+  iid: 
+  intent:
+  iunits:
+
+-
+  qid: MC2-J-0001
+  query: ハルク・ホーガン
+  iid: 1
+  intent: 受賞
+  iunits:
+    - ["A", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+    - ["B", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+    - ["C", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+
+-
+  qid: MC2-J-0001
+  query: ハルク・ホーガン
+  iid: 2
+  intent: 経歴
+  iunits:
+    - ["A", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+    - ["B", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+    - ["C", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+
+-
+  qid: MC2-J-0002
+  query: 八木アリサ
+  iid: 
+  intent:
+  iunits:
+-
+  qid: MC2-J-0002
+  query: 八木アリサ
+  iid: 1
+  intent: 出演
+  iunits:
+    - ["A", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+    - ["B", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+    - ["C", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+
+-
+  qid: MC2-J-0002
+  query: 八木アリサ
+  iid: 2
+  intent: 趣味
+  iunits:
+    - ["A", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+    - ["B", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+    - ["C", "を設定するとradioをボタングループのUIに変更できるのでそっちを選択"]
+

@@ -8,7 +8,7 @@ class TaskSet < ActiveRecord::Base
   validate :task_file_validation, on: :create
   validate :task_file_validation_on_update, on: :update
   after_save :create_tasks
-  validates_presence_of :label
+  validates_presence_of :label, :task_template_id
 
   def finished_task_results
     TaskResult.joins(:task).where("tasks.task_set_id = ?", id).all

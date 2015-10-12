@@ -73,6 +73,7 @@ group :development, :test do
   gem 'rspec-request_describer'
   gem 'autodoc'
   gem 'json_spec'
+  gem 'hpricot'
 end
 
 # haml

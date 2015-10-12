@@ -163,6 +163,7 @@ GEM
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    hpricot (0.8.6)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -388,6 +389,7 @@ DEPENDENCIES
   gretel
   guard-rspec
   haml-rails
+  hpricot
   jbuilder (~> 2.0)
   jquery-ace-rails
   jquery-rails

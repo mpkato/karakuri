@@ -1,14 +1,15 @@
 class Assign < ActiveRecord::Base
   belongs_to :user
   belongs_to :task_set, counter_cache: true
-  before_save :set_user
+  validates_presence_of :task_set_id
+  validate :set_user
 
   attr_accessor :name
 
   def set_user
     user = User.find_by(username: name)
     if user.nil?
-      errors.add(:name, "User #{name} was been found")
+      errors.add(:name, "User #{name} was not found")
       return false
     else
       if Assign.find_by(user_id: user.id, task_set_id: self.task_set_id)
