@@ -200,7 +200,7 @@ RSpec.describe TaskSet, type: :model do
 
     context "with one task finished" do
       before do
-        task.task_results.create(user_id: user.id, submitted_data: "")
+        create(:task_result, user_id: user.id, task_id: task.id)
       end
       it "includes one" do
         expect(finished_task_results.size).to eq(1)
@@ -212,9 +212,9 @@ RSpec.describe TaskSet, type: :model do
     context "with two tasks finished" do
       context "for the same task set" do
         before do
-          task.task_results.create(user_id: user.id, submitted_data: "")
+          create(:task_result, user_id: user.id, task_id: task.id)
           another_user = create(:user)
-          task.task_results.create(user_id: another_user.id, submitted_data: "")
+          create(:task_result, user_id: another_user.id, task_id: task.id)
         end
         it "includes two" do
           expect(finished_task_results.size).to eq(2)
@@ -222,10 +222,10 @@ RSpec.describe TaskSet, type: :model do
       end
       context "for different task sets" do
         before do
-          task.task_results.create(user_id: user.id, submitted_data: "")
+          create(:task_result, user_id: user.id, task_id: task.id)
           another_task_set = create(:task_set, task_template_id: task_template.id)
-          another_task_set.tasks.first.task_results.create(user_id: user.id,
-            submitted_data: "")
+          create(:task_result, user_id: user.id,
+            task_id: another_task_set.tasks.first.id)
         end
         it "includes one" do
           expect(finished_task_results.size).to eq(1)

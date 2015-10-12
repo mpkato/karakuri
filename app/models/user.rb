@@ -11,15 +11,11 @@ class User < ActiveRecord::Base
   has_many :assigns, dependent: :destroy
   has_many :assigned_task_sets, through: :assigns, source: :task_set
   has_many :task_results
+  has_many :behaviors
 
   def assigned_tasks
     Task.joins(task_set: :assigns)
       .where("assigns.user_id = ?", self.id).order(:task_set_id, :id).all
-  end
-
-  def assigned_task_results
-    TaskResult.joins(task: {task_set: :assigns})
-      .where("assigns.user_id = ?", self.id).all
   end
 
   def next_task(task_id)
@@ -35,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def active_time_points(task_set)
-    Behavior.joins(task: :task_set).where("task_sets.id = ?", task_set.id).all
+    behaviors.joins(task: :task_set).where("task_sets.id = ?", task_set.id).all
   end
 
   def estimated_work_time(task_set)

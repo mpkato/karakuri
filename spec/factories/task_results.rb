@@ -1,8 +1,5 @@
 FactoryGirl.define do
   factory :task_result do
-    task nil
-user nil
-yaml_data "MyText"
+    submitted_data YAML.load("{A: '2'}")
   end
-
 end
