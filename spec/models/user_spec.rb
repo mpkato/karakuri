@@ -33,8 +33,8 @@ RSpec.describe User, type: :model do
       Assign.create(task_set_id: task_set.id, name: user.username)
       Assign.create(task_set_id: another_task_set.id, name: user.username)
     end
-    it { expect(user.next_task(current_task.id)).to eq(next_task) }
-    it { expect(user.next_task(next_task.id)).to be_nil }
+    it { expect(user.next_task(current_task)).to eq(next_task) }
+    it { expect(user.next_task(next_task)).to be_nil }
   end
 
   describe "#finished_task_results" do

@@ -4,10 +4,10 @@ class TaskResultsController < ApplicationController
 
   def create
     @task_result = current_user.task_results.build
-    @task_result.task_id = params[:task_id]
+    @task_result.task_id = @task.id
     @task_result.submitted_data = task_result_params
     if @task_result.save
-      next_task = current_user.next_task(params[:task_id])
+      next_task = current_user.next_task(@task)
       path = (params[:next] and not next_task.nil?) ? task_path(next_task) : tasks_path
       redirect_to path, notice: 'Task result was recorded successfully.'
     else
@@ -18,7 +18,7 @@ class TaskResultsController < ApplicationController
   def update
     @task_result = TaskResult.find(params[:id])
     if @task_result.update(submitted_data: task_result_params)
-      next_task = current_user.next_task(params[:task_id])
+      next_task = current_user.next_task(@task)
       path = (params[:next] and not next_task.nil?) ? task_path(next_task) : tasks_path
       redirect_to path, notice: 'Task result was updated successfully.'
     else

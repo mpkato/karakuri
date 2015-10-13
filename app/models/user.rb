@@ -18,11 +18,10 @@ class User < ActiveRecord::Base
       .where("assigns.user_id = ?", self.id).order(:task_set_id, :id).all
   end
 
-  def next_task(task_id)
-    task = Task.find(task_id)
+  def next_task(task)
     Task.joins(task_set: :assigns)
       .where("assigns.user_id = ? and tasks.id > ? and tasks.task_set_id = ?",
-      self.id, task_id, task.task_set_id)
+      self.id, task.id, task.task_set_id)
       .order(:task_set_id, :id).first
   end
 

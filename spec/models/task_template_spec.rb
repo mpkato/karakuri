@@ -90,21 +90,20 @@ RSpec.describe TaskTemplate, type: :model do
     context "with valid form_template" do
       let(:attributes) {
         attributes_for(:task_template, user_id: user.id,
-          form_template: "a {{ b }} c")
+          form_template: "a {{ b }} c", preview_yaml_data: "{b: 'd'}")
       }
       it "renders html" do
-        expect(task_template.preview).to eq("a  c")
+        expect(task_template.preview).to eq("a d c")
       end
     end
 
     context "with invalid form_template" do
       let(:attributes) {
         attributes_for(:task_template, user_id: user.id,
-          form_template: "{{")
+          form_template: "{{", preview_yaml_data: "{b: 'd'}")
       }
       it "is invalid due to form_template" do
-        expect(task_template.preview).to be_nil
-        expect(task_template.errors[:form_template]).to be_present
+        expect(task_template.preview).to start_with("Syntax error")
       end
     end
   end

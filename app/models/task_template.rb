@@ -3,6 +3,7 @@ class TaskTemplate < ActiveRecord::Base
   has_many :task_sets, dependent: :destroy
   validate :liquid_compatible
   validates_presence_of :label, :title_template, :user_id
+  attr_accessor :preview_yaml_data
 
   def liquid_compatible
     [:title_template, :form_template].each do |attr|
@@ -17,10 +18,12 @@ class TaskTemplate < ActiveRecord::Base
   def preview
     begin
       tmp = Liquid::Template.parse(form_template)
-      return tmp.render
-    rescue => ex
-      errors.add(:form_template, "is invalid: #{ex.message}")
-      return nil
+      yaml_data = YAML.load(preview_yaml_data)
+      return tmp.render(yaml_data)
+    rescue Liquid::SyntaxError => ex
+      return "Syntax error in the form template"
+    rescue Psych::SyntaxError, Liquid::ArgumentError => ex
+      return "Syntax error in the preview yaml data"
     end
   end
 

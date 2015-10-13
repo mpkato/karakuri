@@ -28,7 +28,7 @@ class TaskTemplatesController < ApplicationController
     @task_template = TaskTemplate.new(task_template_params)
     @task_template.user = current_user
     respond_to do |format|
-      if @task_template.save
+      if not params[:preview] and @task_template.save
         format.html { redirect_to task_templates_path, notice: 'Task template was successfully created.' }
         format.json { render :show, status: :created, location: @task_template }
       else
@@ -70,6 +70,7 @@ class TaskTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_template_params
-      params.require(:task_template).permit(:label, :title_template, :form_template)
+      params.require(:task_template)
+        .permit(:label, :title_template, :form_template, :preview_yaml_data)
     end
 end

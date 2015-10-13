@@ -3,5 +3,12 @@
   = f.input :title_template
   = f.input :form_template, input_html: {class: 'html-area', rows: 20}
 
+  = f.input :preview_yaml_data
+  = render partial: "preview"
+
+  %br
+  %hr
+  %br
+
   = f.submit nil, class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), task_templates_path, :class => 'btn btn-default'
