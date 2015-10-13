@@ -28,7 +28,7 @@ class TaskTemplatesController < ApplicationController
     @task_template = TaskTemplate.new(task_template_params)
     @task_template.user = current_user
     respond_to do |format|
-      if not params[:preview] and @task_template.save
+      if @task_template.save
         format.html { redirect_to task_templates_path, notice: 'Task template was successfully created.' }
         format.json { render :show, status: :created, location: @task_template }
       else
@@ -60,6 +60,12 @@ class TaskTemplatesController < ApplicationController
       format.html { redirect_to task_templates_url, notice: 'Task template was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # POST /task_templates/preview
+  def preview
+    @task_template = TaskTemplate.new(task_template_params)
+    render text: @task_template.preview
   end
 
   private

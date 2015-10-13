@@ -1,11 +1,7 @@
-%button{type: "button", class: "btn btn-info", id: "preview_button"}
+%button#preview_button{type: "button", class: "btn btn-info"}
   Preview
 
-#preview_source
-  - if params[:preview]
-    = raw @task_template.preview
-
-.modal.fade#preview
+.modal.fade#preview{data: {url: preview_task_templates_path }}
   .modal-dialog
     .modal-content
       .modal-header

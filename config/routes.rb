@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   resources :task_templates, shallow: true do
+    post :preview, on: :collection
+    patch :preview, on: :collection
     resources :task_sets, shallow: true do
       resources :assigns, only: [:index, :show, :create, :destroy]
     end

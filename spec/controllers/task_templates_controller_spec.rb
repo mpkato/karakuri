@@ -14,6 +14,15 @@ RSpec.describe TaskTemplatesController, type: :controller do
       label: "")
   }
 
+  let(:preview_attributes) {
+    attributes_for(:task_template, user_id: user.id,
+      preview_yaml_data: "{query: 'A'}") 
+  }
+
+  let(:invalid_preview_attributes) {
+    attributes_for(:task_template, user_id: user.id,
+      preview_yaml_data: "") 
+  }
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TaskTemplatesController. Be sure to keep this updated too.
@@ -136,6 +145,36 @@ RSpec.describe TaskTemplatesController, type: :controller do
       task_template = TaskTemplate.create! valid_attributes
       delete :destroy, {:id => task_template.to_param}, valid_session
       expect(response).to redirect_to(task_templates_path)
+    end
+  end
+
+  describe "POST #preview" do
+    context "with valid attributes" do
+      it "renders form_template" do
+        post :preview, {:task_template => preview_attributes}, valid_session
+        expect(response.body).to start_with("<p>「A」")
+      end
+    end
+    context "with invalid attributes" do
+      it "renders 'Syntax error *'" do
+        post :preview, {:task_template => invalid_preview_attributes}, valid_session
+        expect(response.body).to start_with("Syntax error")
+      end
+    end
+  end
+
+  describe "PATCH #preview" do
+    context "with valid attributes" do
+      it "renders form_template" do
+        patch :preview, {:task_template => preview_attributes}, valid_session
+        expect(response.body).to start_with("<p>「A」")
+      end
+    end
+    context "with invalid attributes" do
+      it "renders 'Syntax error *'" do
+        patch :preview, {:task_template => invalid_preview_attributes}, valid_session
+        expect(response.body).to start_with("Syntax error")
+      end
     end
   end
 
