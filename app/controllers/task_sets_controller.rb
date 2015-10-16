@@ -6,7 +6,7 @@ class TaskSetsController < ApplicationController
   # GET /task_sets
   # GET /task_sets.json
   def index
-    @task_sets = @task_template.task_sets
+    @task_sets = @task_template.task_sets.includes(:assigned_users)
   end
 
   # GET /task_sets/1

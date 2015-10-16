@@ -10,6 +10,7 @@
       %th Size
       %th Created at
       %th
+      %th Assigned users
       %th
   %tbody
   - @task_sets.each do |task_set|
@@ -23,6 +24,8 @@
           Assignment
           %span.badge
             = task_set.assigns_count
+      %td
+        = task_set.assigned_users.map {|u| u.username }.join(", ")
       %td
         = link_to 'Edit', edit_task_set_path(task_set), class: 'btn btn-default btn-xs'
         = link_to 'Destroy', task_set_path(task_set), method: :delete, data: { confirm: 'Are you sure?' },
