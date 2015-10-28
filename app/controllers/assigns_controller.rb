@@ -30,6 +30,12 @@ class AssignsController < ApplicationController
     redirect_to task_set_assigns_path(@assign.task_set), notice: 'Unassigned successfully'
   end
 
+  def download
+    @assign = Assign.find(params[:assign_id])
+    @task_results = TaskResult.where(user_id: @assign.user_id)
+      .joins(:task).merge(Task.where(task_set_id: @assign.task_set_id))
+  end
+
   private
     def set_assign
       @assign = Assign.find(params[:id])

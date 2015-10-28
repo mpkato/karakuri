@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     post :preview, on: :collection
     patch :preview, on: :collection
     resources :task_sets, shallow: true do
-      resources :assigns, only: [:index, :show, :create, :destroy]
+      resources :assigns, only: [:index, :show, :create, :destroy] do
+        get 'download'
+      end
     end
   end
   resources :tasks, only: [:index, :show] do
