@@ -34,6 +34,10 @@ class AssignsController < ApplicationController
     @assign = Assign.find(params[:assign_id])
     @task_results = TaskResult.where(user_id: @assign.user_id)
       .joins(:task).merge(Task.where(task_set_id: @assign.task_set_id))
+    respond_to do |format|
+      format.html { redirect_to :action => 'download', :format => 'json' }
+      format.json { render }
+    end
   end
 
   private
