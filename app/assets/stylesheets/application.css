@@ -11,8 +11,6 @@
  * file per style scope.
  *
  *= require bootstrap
- *= require bootstrap_and_overrides
- *= require devise_bootstrap_views_less
  *= require jquery-ui
  *= require_self
  */
