@@ -3,7 +3,7 @@ lock '3.4.0'
 set :default_stage, "production"
 
 set :application, 'karakuri'
-set :repo_url, 'git@github.com:mpkato/karakuri.git'
+set :repo_url, 'https://github.com/mpkato/karakuri.git'
 
 set :deploy_to, '/var/www/karakuri'
 set :scm, :git
