@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.0.4'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -44,7 +44,7 @@ group :development, :test do
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 2.1.3'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -99,10 +99,13 @@ gem 'config'
 
 # tuning
 group :development do
-  gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler', '~> 0.10.1'
   gem 'peek'
   gem 'peek-rblineprof'
   gem 'bullet'
 end
 
-#gem 'rake', '< 11.0'
+gem 'rake', '< 11.0'
+gem 'ffi', '~> 1.9.24'
+gem 'nokogiri', '~> 1.8.2'
+
