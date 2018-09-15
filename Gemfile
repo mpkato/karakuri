@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.10'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -64,9 +64,9 @@ gem 'activeadmin', github: 'activeadmin'
 
 # test
 group :development, :test do
-	gem 'rspec'
-	gem 'rspec-rails'
-	gem "factory_girl_rails"
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem "factory_girl_rails"
   gem 'faker'
   gem 'guard-rspec'
   gem 'database_rewinder'
@@ -104,3 +104,5 @@ group :development do
   gem 'peek-rblineprof'
   gem 'bullet'
 end
+
+#gem 'rake', '< 11.0'
