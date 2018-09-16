@@ -15,7 +15,13 @@
       %header
         = render partial: 'application/header'
         = render partial: 'application/flash'
-        = breadcrumbs style: :bootstrap
+        - breadcrumbs.tap do |links|
+          - if links.any?
+            %nav{"aria-label": "breadcrumb"}
+              %ol.breadcrumb
+                - links.each do |link|
+                  %li{class: "breadcrumb-item" + (link.current? ? " active" : "")}
+                    = link_to_unless(link.current?, link.text, link.url)
       %article
         = yield
       %footer
