@@ -13,8 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require popper
+//= require bootstrap-sprockets
 //= require autocomplete-rails
-//= require twitter/bootstrap
 //= require turbolinks
 //= require ace/ace
 //= require ace/theme-monokai

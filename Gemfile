@@ -12,7 +12,8 @@ gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+#gem 'therubyracer', platforms: :ruby
+gem 'mini_racer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -50,10 +51,11 @@ group :development, :test do
 end
 
 # bootstrap
-gem 'bootstrap3-rails'
-gem 'twitter-bootstrap-rails'
-gem 'font-awesome-rails'
-gem 'less-rails'
+#gem 'bootstrap3-rails'
+gem 'bootstrap'
+#gem 'twitter-bootstrap-rails'
+#gem 'font-awesome-rails'
+#gem 'less-rails'
 gem 'simple_form'
 
 # devise

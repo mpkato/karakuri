@@ -1,35 +1,31 @@
-.navbar.navbar-default{:role => "navigation"}
-  .navbar-header
-    %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
-    = link_to 'Top', root_path, class: "navbar-brand"
-  .navbar-collapse.collapse.navbar-responsive-collapse
-    %ul.nav.navbar-nav
-      %li
-        = link_to 'Templates', task_templates_path
-      %li
-        = link_to 'Tasks', tasks_path
-      -#
-        %li.dropdown
-          %a.dropdown-toggle{"data-target" => "#", "data-toggle" => "dropdown"}
-            dropdown
-            %b.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href => "#"} item
-    %ul.nav.navbar-nav.navbar-right
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  = link_to 'Top', root_path, class: "navbar-brand"
+  %button.navbar-toggler{type: "button", "data-toggle": "collapse",
+    "data-target": "#navbarSupportedContent",
+    "aria-controls": "navbarSupportedContent",
+    "aria-expanded": "false",
+    "aria-label": "Toggle navigation"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item
+        = link_to 'Templates', task_templates_path,
+          class: "nav-link"
+      %li.nav-item
+        = link_to 'Tasks', tasks_path,
+          class: "nav-link"
+    %ul.navbar-nav.mr-sm-0
       - if user_signed_in?
-        %li.dropdown
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0)"}
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{href: "#", role: "button",
+            "data-toggle": "dropdown", "aria-haspopup": "true",
+            "aria-expanded": "false"}
             = current_user.username
-            %b.caret
-          %ul.dropdown-menu
-            %li= link_to "Change Profile", edit_user_registration_path
-            %li.divider
-            %li
-              = link_to "Sign out", destroy_user_session_path, :method => :delete
+          .dropdown-menu{"aria-labelledby": "navbarDropdown"}
+            = link_to "Change Profile", edit_user_registration_path, class: "dropdown-item"
+            .divider
+            = link_to "Sign out", destroy_user_session_path, :method => :delete,
+              class: "dropdown-item"
       - else
-        %li
-          = link_to "Sign in", new_user_session_path
+        %li.nav-item
+          = link_to "Sign in", new_user_session_path, class: "nav-link"
