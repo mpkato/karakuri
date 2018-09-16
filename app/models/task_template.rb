@@ -18,6 +18,9 @@ class TaskTemplate < ActiveRecord::Base
   def preview
     begin
       tmp = Liquid::Template.parse(form_template)
+      if preview_yaml_data.strip.empty?
+        return tmp.render()
+      end
       yaml_data = YAML.load(preview_yaml_data)
       return tmp.render(yaml_data)
     rescue Liquid::SyntaxError => ex
