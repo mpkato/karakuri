@@ -6,7 +6,10 @@ $ ->
   $(document).on 'turbolinks:load', initPreviewButton
 
 initAce = ->
+  is_disabled = $('.html-area').attr('disabled')
   $('.html-area').ace({ theme: 'monokai', lang: 'liquid', maxLines: 30, minLines: 5 })
+  if is_disabled 
+    $('.html-area').data('ace').editor.ace.setReadOnly(true)
   $('.yaml-area').ace({ theme: 'monokai', lang: 'yaml', maxLines: 30, minLines: 5 })
 
 initPreviewButton = ->

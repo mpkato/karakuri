@@ -19,8 +19,8 @@
           = progressbar(valuemax, valuenow, "#{valuenow}/#{valuemax}")
         %td=assign.user.estimated_work_time(@task_set)
         %td
-          = link_to 'Download', assign_download_path(assign), class: 'btn btn-default btn-xs'
-          = link_to 'Delete', assign_path(assign), class: 'btn btn-danger btn-xs',
+          = link_to 'Download', assign_download_path(assign), class: 'btn btn-outline-secondary'
+          = link_to 'Delete', assign_path(assign), class: 'btn btn-outline-danger',
           method: :delete, data: { confirm: 'Are you sure?' }
 
 = simple_form_for [@task_set, @assign] do |f|

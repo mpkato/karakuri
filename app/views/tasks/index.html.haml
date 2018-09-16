@@ -1,10 +1,13 @@
 %h1 Assigned tasks
 = progressbar(@tasks.size, @task_results.size, "#{@task_results.size}/#{@tasks.size}")
-%ul{class: "nav nav-tabs"}
-  %li{role: "presentation", class: params[:finished] ? "" : "active"}
-    =link_to 'Unfinished', tasks_path
-  %li{role: "presentation", class: params[:finished] ? "active" : ""}
-    =link_to 'Finished', tasks_path(finished: true)
+%br
+%ul.nav.nav-tabs
+  %li{class: "nav-item"}
+    =link_to 'Unfinished', tasks_path, 
+      class: "nav-link" + ((not params[:finished]) ? " active" : "")
+  %li{class: "nav-item"}
+    =link_to 'Finished', tasks_path(finished: true),
+      class: "nav-link" + (params[:finished] ? " active" : "")
 %table.table
   %thead
     %tr

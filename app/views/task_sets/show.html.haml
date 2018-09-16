@@ -16,8 +16,9 @@
     %tr
       %td=link_to task.render(@task_set.task_template.title_template), task_path(task)
       - keys.each do |key|
-        %td= task.yaml_data[key]
+        %td= task.yaml_data[key].to_s.truncate(100)
 
-= link_to 'Edit', edit_task_set_path(@task_set), class: 'btn btn-default'
+= link_to 'Edit', edit_task_set_path(@task_set), 
+  class: 'btn btn-primary'
 = link_to 'Delete', task_set_path(@task_set), method: "delete", 
   data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'
