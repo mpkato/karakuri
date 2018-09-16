@@ -62,7 +62,6 @@ gem 'simple_form'
 # devise
 gem 'devise'
 gem 'devise-bootstrap-views'
-gem 'activeadmin', github: 'activeadmin'
 
 # test
 group :development, :test do
