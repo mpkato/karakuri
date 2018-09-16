@@ -113,7 +113,7 @@ RSpec.describe TaskSet, type: :model do
     context "with valid attributes" do
 
       it "updates the label" do
-        new_label = Faker::Name.title
+        new_label = Faker::Job.title
         expect(task_set.update(label: new_label, task_file: nil)).to be_truthy
         expect(task_set.reload.label).to eq(new_label)
       end

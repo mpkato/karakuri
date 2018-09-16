@@ -118,7 +118,7 @@ RSpec.describe TaskSetsController, type: :controller do
     context "with valid params" do
       let(:new_attributes) {
         attributes_for(:task_set, task_template_id: task_template.id,
-          label: Faker::Name.title)
+          label: Faker::Job.title)
       }
 
       it "updates the requested task_set" do

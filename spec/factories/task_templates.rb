@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :task_template do
-    label { Faker::Name.title }
+    label { Faker::Job.title }
     title_template "{{ query }} {% if iid %}- {{ intent }}{% endif %}"
     form_template <<EOS
 <p>「{{query}}」の特に「{{intent}}」に興味があるようなユーザにとっての各情報の重要度を5段階で評価してください</p>

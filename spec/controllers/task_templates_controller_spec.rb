@@ -96,7 +96,7 @@ RSpec.describe TaskTemplatesController, type: :controller do
     context "with valid params" do
       let(:new_attributes) {
         attributes_for(:task_template, user_id: user.id,
-          label: Faker::Name.title)
+          label: Faker::Job.title)
       }
 
       it "updates the requested task_template" do
