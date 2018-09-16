@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :task_template do
     label { Faker::Job.title }
-    title_template "{{ query }} {% if iid %}- {{ intent }}{% endif %}"
-    form_template <<EOS
+    title_template { "{{ query }} {% if iid %}- {{ intent }}{% endif %}" }
+    form_template { <<EOS }
 <p>「{{query}}」の特に「{{intent}}」に興味があるようなユーザにとっての各情報の重要度を5段階で評価してください</p>
 
 {% assign rates = "0|1|2|3|4" | split: "|" %}
@@ -38,7 +38,7 @@ EOS
   end
 
   trait :complex do
-    form_template <<EOS
+    form_template { <<EOS }
     <input type="radio" name="radio" value="1">
     <input type="radio" name="radio" value="2">
     <input type="text" name="text">

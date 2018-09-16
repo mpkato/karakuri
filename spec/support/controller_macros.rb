@@ -3,7 +3,7 @@ module ControllerMacros
     before(:each) do
       controller.stub(:authenticate_user!).and_return true
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      sign_in FactoryGirl.create(:user)
+      sign_in FactoryBot.create(:user)
     end
   end
 end

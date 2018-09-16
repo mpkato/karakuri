@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :behavior do
-    status 0
+    status { 0 }
   end
 
 end

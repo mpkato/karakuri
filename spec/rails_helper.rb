@@ -47,11 +47,12 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-  config.include Devise::TestHelpers, :type => :controller
+  #config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   include ActionDispatch::TestProcess
-  FactoryGirl::SyntaxRunner.class_eval do
+  FactoryBot::SyntaxRunner.class_eval do
     include ActionDispatch::TestProcess
   end
 end

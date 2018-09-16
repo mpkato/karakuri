@@ -68,7 +68,7 @@ gem 'activeadmin', github: 'activeadmin'
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem 'faker'
   gem 'guard-rspec'
   gem 'database_rewinder'
@@ -76,6 +76,7 @@ group :development, :test do
   gem 'autodoc'
   gem 'json_spec'
   gem 'hpricot'
+  gem 'rubocop-rspec'
 end
 
 # haml
