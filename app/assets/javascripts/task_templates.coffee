@@ -2,11 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $(document).on 'page:change', initAce
-  $(document).on 'page:change', initPreviewButton
+  $(document).on 'turbolinks:load', initAce
+  $(document).on 'turbolinks:load', initPreviewButton
 
 initAce = ->
   $('.html-area').ace({ theme: 'monokai', lang: 'liquid', maxLines: 30, minLines: 5 })
+  $('.yaml-area').ace({ theme: 'monokai', lang: 'yaml', maxLines: 30, minLines: 5 })
 
 initPreviewButton = ->
   task_template_preview = ->

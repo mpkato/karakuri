@@ -18,6 +18,8 @@
 //= require turbolinks
 //= require ace/ace
 //= require ace/theme-monokai
+//= require ace/theme-textmate
 //= require ace/mode-liquid
+//= require ace/mode-yaml
 //= require jquery-ace.min
 //= require_tree .

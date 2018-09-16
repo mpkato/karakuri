@@ -3,7 +3,7 @@
   = f.input :title_template
   = f.input :form_template, input_html: {class: 'html-area', rows: 20}
 
-  = f.input :preview_yaml_data
+  = f.input :preview_yaml_data, as: :text, input_html: {class: 'yaml-area', rows: 5}
   = render partial: "preview"
 
   %br
