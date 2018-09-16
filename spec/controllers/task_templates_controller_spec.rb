@@ -21,7 +21,7 @@ RSpec.describe TaskTemplatesController, type: :controller do
 
   let(:invalid_preview_attributes) {
     attributes_for(:task_template, user_id: user.id,
-      preview_yaml_data: "") 
+      preview_yaml_data: "{{") 
   }
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
