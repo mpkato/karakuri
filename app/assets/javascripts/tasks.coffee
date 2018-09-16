@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   timer = null
-  $(document).on 'page:change', recordBehavior
+  $(document).on 'turbolinks:load', recordBehavior
 
 recordBehavior = ->
   sendPing = ->
