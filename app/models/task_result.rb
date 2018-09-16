@@ -7,10 +7,15 @@ class TaskResult < ActiveRecord::Base
 
   def require_all_parameters
     return if task.nil?
-    unless Hash === submitted_data
+
+    # nil
+    unless ActionController::Parameters === submitted_data\
+        or Hash === submitted_data
       errors.add(:submitted_data, "Submitted data must be Hash")
-      return 
+      return
     end
+
+    # empty
     task.variables.each do |v|
       unless submitted_data.include?(v) and not submitted_data[v].empty?
         errors.add(v, "is empty")

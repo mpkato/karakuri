@@ -43,12 +43,14 @@ RSpec.describe TaskSetsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TaskSetsController. Be sure to keep this updated too.
-  let(:valid_session) { sign_in user }
+  before do
+    sign_in user
+  end
 
   describe "GET #index" do
     it "assigns all task_sets as @task_sets" do
       task_set = TaskSet.create! valid_attributes
-      get :index, {task_template_id: task_template.id}, valid_session
+      get :index, params: {task_template_id: task_template.id}
       expect(assigns(:task_sets)).to eq([task_set])
     end
   end
@@ -56,14 +58,14 @@ RSpec.describe TaskSetsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested task_set as @task_set" do
       task_set = TaskSet.create! valid_attributes
-      get :show, {:id => task_set.to_param}, valid_session
+      get :show, params: {:id => task_set.to_param}
       expect(assigns(:task_set)).to eq(task_set)
     end
   end
 
   describe "GET #new" do
     it "assigns a new task_set as @task_set" do
-      get :new, {task_template_id: task_template.id}, valid_session
+      get :new, params: {task_template_id: task_template.id}
       expect(assigns(:task_set)).to be_a_new(TaskSet)
     end
   end
@@ -71,7 +73,7 @@ RSpec.describe TaskSetsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested task_set as @task_set" do
       task_set = TaskSet.create! valid_attributes
-      get :edit, {:id => task_set.to_param}, valid_session
+      get :edit, params: {:id => task_set.to_param}
       expect(assigns(:task_set)).to eq(task_set)
     end
   end
@@ -80,35 +82,35 @@ RSpec.describe TaskSetsController, type: :controller do
     context "with valid params" do
       it "creates a new TaskSet" do
         expect {
-          post :create, {task_template_id: task_template.id,
-            :task_set => valid_attributes}, valid_session
+          post :create, params: {task_template_id: task_template.id,
+            :task_set => valid_attributes}
         }.to change(TaskSet, :count).by(1)
       end
 
       it "assigns a newly created task_set as @task_set" do
-        post :create, {task_template_id: task_template.id,
-          :task_set => valid_attributes}, valid_session
+        post :create, params: {task_template_id: task_template.id,
+          :task_set => valid_attributes}
         expect(assigns(:task_set)).to be_a(TaskSet)
         expect(assigns(:task_set)).to be_persisted
       end
 
       it "redirects to the created task_set" do
-        post :create, {task_template_id: task_template.id,
-          :task_set => valid_attributes}, valid_session
+        post :create, params: {task_template_id: task_template.id,
+          :task_set => valid_attributes}
         expect(response).to redirect_to(task_template_task_sets_path(task_template))
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved task_set as @task_set" do
-        post :create, {task_template_id: task_template.id,
-          :task_set => invalid_attributes}, valid_session
+        post :create, params: {task_template_id: task_template.id,
+          :task_set => invalid_attributes}
         expect(assigns(:task_set)).to be_a_new(TaskSet)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {task_template_id: task_template.id,
-          :task_set => invalid_attributes}, valid_session
+        post :create, params: {task_template_id: task_template.id,
+          :task_set => invalid_attributes}
         expect(response).to render_template("new")
       end
     end
@@ -123,19 +125,19 @@ RSpec.describe TaskSetsController, type: :controller do
 
       it "updates the requested task_set" do
         task_set = TaskSet.create! valid_attributes
-        put :update, {:id => task_set.to_param, :task_set => new_attributes}, valid_session
+        put :update, params: {:id => task_set.to_param, :task_set => new_attributes}
         expect{ task_set.reload }.to change{ task_set.label }.from(task_set.label).to(new_attributes[:label])
       end
 
       it "assigns the requested task_set as @task_set" do
         task_set = TaskSet.create! valid_attributes
-        put :update, {:id => task_set.to_param, :task_set => new_attributes}, valid_session
+        put :update, params: {:id => task_set.to_param, :task_set => new_attributes}
         expect(assigns(:task_set)).to eq(task_set)
       end
 
       it "redirects to the task_set" do
         task_set = TaskSet.create! valid_attributes
-        put :update, {:id => task_set.to_param, :task_set => new_attributes}, valid_session
+        put :update, params: {:id => task_set.to_param, :task_set => new_attributes}
         expect(response).to redirect_to(task_template_task_sets_path(task_template))
       end
     end
@@ -143,13 +145,13 @@ RSpec.describe TaskSetsController, type: :controller do
     context "with invalid params" do
       it "assigns the task_set as @task_set" do
         task_set = TaskSet.create! valid_attributes
-        put :update, {:id => task_set.to_param, :task_set => invalid_attributes}, valid_session
+        put :update, params: {:id => task_set.to_param, :task_set => invalid_attributes}
         expect(assigns(:task_set)).to eq(task_set)
       end
 
       it "re-renders the 'edit' template" do
         task_set = TaskSet.create! valid_attributes
-        put :update, {:id => task_set.to_param, :task_set => invalid_attributes}, valid_session
+        put :update, params: {:id => task_set.to_param, :task_set => invalid_attributes}
         expect(response).to render_template("edit")
       end
     end
@@ -159,13 +161,13 @@ RSpec.describe TaskSetsController, type: :controller do
     it "destroys the requested task_set" do
       task_set = TaskSet.create! valid_attributes
       expect {
-        delete :destroy, {:id => task_set.to_param}, valid_session
+        delete :destroy, params: {:id => task_set.to_param}
       }.to change(TaskSet, :count).by(-1)
     end
 
     it "redirects to the task_sets list" do
       task_set = TaskSet.create! valid_attributes
-      delete :destroy, {:id => task_set.to_param}, valid_session
+      delete :destroy, params: {:id => task_set.to_param}
       expect(response).to redirect_to(task_template_task_sets_path(task_template))
     end
   end

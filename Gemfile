@@ -2,20 +2,20 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.10'
+gem 'rails', '5.1.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '4.3.3'
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -45,9 +45,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.1.3'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
@@ -76,6 +73,7 @@ group :development, :test do
   gem 'json_spec'
   gem 'hpricot'
   gem 'rubocop-rspec'
+  gem 'rails-controller-testing'
 end
 
 # haml
@@ -101,13 +99,16 @@ gem 'config'
 
 # tuning
 group :development do
-  gem 'rack-mini-profiler', '~> 0.10.1'
+  gem 'rack-mini-profiler'
   gem 'peek'
   gem 'peek-rblineprof'
   gem 'bullet'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console'
 end
 
-gem 'rake', '< 11.0'
-gem 'ffi', '~> 1.9.24'
-gem 'nokogiri', '~> 1.8.2'
+#gem 'rake', '< 11.0'
+#gem 'ffi', '~> 1.9.24'
+#gem 'nokogiri', '~> 1.8.2'
 

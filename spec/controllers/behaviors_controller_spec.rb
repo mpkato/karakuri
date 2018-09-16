@@ -28,12 +28,14 @@ RSpec.describe BehaviorsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # BehaviorsController. Be sure to keep this updated too.
-  let(:valid_session) { sign_in user }
+  before do
+    sign_in user
+  end
 
   describe "GET #index" do
     it "is not found" do
       behavior = Behavior.create! valid_attributes
-      expect{get :index, {task_id: task.id}, valid_session}.to\
+      expect{get :index, params: {task_id: task.id}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -41,14 +43,14 @@ RSpec.describe BehaviorsController, type: :controller do
   describe "GET #show" do
     it "is not found" do
       behavior = Behavior.create! valid_attributes
-      expect{get :show, {:id => behavior.to_param}, valid_session}.to\
+      expect{get :show, params: {:id => behavior.to_param}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
 
   describe "GET #new" do
     it "is not found" do
-      expect{get :new, {task_id: task.id}, valid_session}.to\
+      expect{get :new, params: {task_id: task.id}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -56,7 +58,7 @@ RSpec.describe BehaviorsController, type: :controller do
   describe "GET #edit" do
     it "is not found" do
       behavior = Behavior.create! valid_attributes
-      expect{get :edit, {:id => behavior.to_param}, valid_session}.to\
+      expect{get :edit, params: {:id => behavior.to_param}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -65,35 +67,35 @@ RSpec.describe BehaviorsController, type: :controller do
     context "with valid params" do
       it "creates a new Behavior" do
         expect {
-          post :create, {task_id: task.id,
-          :behavior => valid_attributes, format: :json}, valid_session
+          post :create, params: {task_id: task.id,
+          :behavior => valid_attributes, format: :json}
         }.to change(Behavior, :count).by(1)
       end
 
       it "assigns a newly created behavior as @behavior" do
-        post :create, {task_id: task.id,
-          :behavior => valid_attributes, format: :json}, valid_session
+        post :create, params: {task_id: task.id,
+          :behavior => valid_attributes, format: :json}
         expect(assigns(:behavior)).to be_a(Behavior)
         expect(assigns(:behavior)).to be_persisted
       end
 
       it "respond :created" do
-        post :create, {task_id: task.id,
-          :behavior => valid_attributes, format: :json}, valid_session
+        post :create, params: {task_id: task.id,
+          :behavior => valid_attributes, format: :json}
         expect(response).to have_http_status(:created)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved behavior as @behavior" do
-        post :create, {task_id: task.id,
-          :behavior => invalid_attributes, format: :json}, valid_session
+        post :create, params: {task_id: task.id,
+          :behavior => invalid_attributes, format: :json}
         expect(assigns(:behavior)).to be_a_new(Behavior)
       end
 
       it "respond :unprocessable_entity" do
-        post :create, {task_id: task.id,
-          :behavior => invalid_attributes, format: :json}, valid_session
+        post :create, params: {task_id: task.id,
+          :behavior => invalid_attributes, format: :json}
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -106,8 +108,8 @@ RSpec.describe BehaviorsController, type: :controller do
     }
     it "is not found" do
       behavior = Behavior.create! valid_attributes
-      expect{put :update, {:id => behavior.to_param, 
-        :behavior => new_attributes}, valid_session}.to\
+      expect{get :update, params: {:id => behavior.to_param, 
+        :behavior => new_attributes}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -115,7 +117,7 @@ RSpec.describe BehaviorsController, type: :controller do
   describe "DELETE #destroy" do
     it "is not found" do
       behavior = Behavior.create! valid_attributes
-      expect{delete :destroy, {:id => behavior.to_param}, valid_session}.to\
+      expect{delete :destroy, params: {:id => behavior.to_param}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end

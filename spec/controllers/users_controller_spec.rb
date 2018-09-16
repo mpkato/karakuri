@@ -5,12 +5,14 @@ RSpec.describe UsersController, type: :controller do
   let!(:other_users) {
     create_list(:user, 5)
   }
-  let(:valid_session) { sign_in user }
+  before do
+    sign_in user
+  end
 
   describe "GET #autocomplete_user_username" do
     subject(:json) { JSON.parse(response.body) } 
     it "assigns all task_sets as @task_sets" do
-      get :autocomplete_user_username, {term: user.username}, valid_session
+      get :autocomplete_user_username, params: {term: user.username}
       expect(json.first["label"]).to eq(user.username)
     end
   end

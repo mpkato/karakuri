@@ -24,12 +24,14 @@ RSpec.describe AssignsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # AssignsController. Be sure to keep this updated too.
-  let(:valid_session) { sign_in user }
+  before do
+    sign_in user
+  end
 
   describe "GET #index" do
     it "assigns all assigns as @assigns" do
       assign = Assign.create! valid_attributes
-      get :index, {task_set_id: task_set.id}, valid_session
+      get :index, params: {task_set_id: task_set.id}
       expect(assigns(:assigns)).to eq([assign])
     end
   end
@@ -37,14 +39,14 @@ RSpec.describe AssignsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested assign as @assign" do
       assign = Assign.create! valid_attributes
-      get :show, {:id => assign.to_param}, valid_session
+      get :show, params: {:id => assign.to_param}
       expect(assigns(:assign)).to eq(assign)
     end
   end
 
   describe "GET #new" do
     it "is not found" do
-      expect{get :new, {task_set_id: task_set.id}, valid_session}.to\
+      expect{get :new, params: {task_set_id: task_set.id}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -52,7 +54,7 @@ RSpec.describe AssignsController, type: :controller do
   describe "GET #edit" do
     it "is not found" do
       assign = Assign.create! valid_attributes
-      expect{get :edit, {:id => assign.to_param}, valid_session}.to\
+      expect{get :edit, params: {:id => assign.to_param}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -61,35 +63,35 @@ RSpec.describe AssignsController, type: :controller do
     context "with valid params" do
       it "creates a new Assign" do
         expect {
-          post :create, {task_set_id: task_set.id,
-          :assign => valid_attributes}, valid_session
+          post :create, params: {task_set_id: task_set.id,
+          :assign => valid_attributes}
         }.to change(Assign, :count).by(1)
       end
 
       it "assigns a newly created assign as @assign" do
-        post :create, {task_set_id: task_set.id,
-          :assign => valid_attributes}, valid_session
+        post :create, params: {task_set_id: task_set.id,
+          :assign => valid_attributes}
         expect(assigns(:assign)).to be_a(Assign)
         expect(assigns(:assign)).to be_persisted
       end
 
       it "redirects to the created assign" do
-        post :create, {task_set_id: task_set.id,
-          :assign => valid_attributes}, valid_session
+        post :create, params: {task_set_id: task_set.id,
+          :assign => valid_attributes}
         expect(response).to redirect_to(task_set_assigns_path(task_set))
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved assign as @assign" do
-        post :create, {task_set_id: task_set.id,
-          :assign => invalid_attributes}, valid_session
+        post :create, params: {task_set_id: task_set.id,
+          :assign => invalid_attributes}
         expect(assigns(:assign)).to be_a_new(Assign)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {task_set_id: task_set.id,
-          :assign => invalid_attributes}, valid_session
+        post :create, params: {task_set_id: task_set.id,
+          :assign => invalid_attributes}
         expect(response).to render_template("index")
       end
     end
@@ -102,8 +104,8 @@ RSpec.describe AssignsController, type: :controller do
     }
     it "is not found" do
       assign = Assign.create! valid_attributes
-      expect{put :update, {:id => assign.to_param, 
-        :assign => new_attributes}, valid_session}.to\
+      expect{put :update, params: {:id => assign.to_param, 
+        :assign => new_attributes}}.to\
       raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -112,13 +114,13 @@ RSpec.describe AssignsController, type: :controller do
     it "destroys the requested assign" do
       assign = Assign.create! valid_attributes
       expect {
-        delete :destroy, {:id => assign.to_param}, valid_session
+        delete :destroy, params: {:id => assign.to_param}
       }.to change(Assign, :count).by(-1)
     end
 
     it "redirects to the assigns list" do
       assign = Assign.create! valid_attributes
-      delete :destroy, {:id => assign.to_param}, valid_session
+      delete :destroy, params: {:id => assign.to_param}
       expect(response).to redirect_to(task_set_assigns_path(task_set))
     end
   end

@@ -41,11 +41,13 @@ RSpec.describe TasksController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TasksController. Be sure to keep this updated too.
-  let(:valid_session) { sign_in user }
+  before do
+    sign_in user
+  end
 
   describe "GET #index" do
     it "assigns all tasks as @tasks" do
-      get :index, {}, valid_session
+      get :index, params: {}
       expect(assigns(:tasks)).to eq(task_set.tasks)
     end
   end
@@ -53,19 +55,19 @@ RSpec.describe TasksController, type: :controller do
   describe "GET #show" do
     let(:task) { task_set.tasks.first }
     it "assigns the requested task as @task" do
-      get :show, {:id => task.to_param}, valid_session
+      get :show, params: {:id => task.to_param}
       expect(assigns(:task)).to eq(task)
     end
 
     it "assigns a new task result as @task_result" do
-      get :show, {:id => task.to_param}, valid_session
+      get :show, params: {:id => task.to_param}
       expect(assigns(:task_result)).to be_a_new(TaskResult)
     end
 
     context "with a task result created" do
       let!(:task_result) { create(:task_result, task_id: task.id, user_id: user.id) }
       it "assigns the task result as @task_result" do
-        get :show, {:id => task.to_param}, valid_session
+        get :show, params: {:id => task.to_param}
         expect(assigns(:task_result)).to eq(task_result)
       end
     end
@@ -73,7 +75,7 @@ RSpec.describe TasksController, type: :controller do
 
   describe "GET #new" do
     it "is not found" do
-      expect{get :new, {}, valid_session}.to\
+      expect{get :new, params: {}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -81,14 +83,14 @@ RSpec.describe TasksController, type: :controller do
   describe "GET #edit" do
     let(:task) { task_set.tasks.first }
     it "is not found" do
-      expect{get :edit, {:id => task.to_param}, valid_session}.to\
+      expect{get :edit, params: {:id => task.to_param}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
 
   describe "POST #create" do
     it "is not found" do
-      expect{get :create, {task: {}}, valid_session}.to\
+      expect{get :create, params: {task: {}}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -100,8 +102,8 @@ RSpec.describe TasksController, type: :controller do
       attributes_for(:task, task_set_id: another_task_set.id)
     }
     it "is not found" do
-      expect{put :update, {:id => task.to_param, 
-        task: new_attributes}, valid_session}.to\
+      expect{put :update, params: {:id => task.to_param, 
+        task: new_attributes}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end
@@ -109,7 +111,7 @@ RSpec.describe TasksController, type: :controller do
   describe "DELETE #destroy" do
     let(:task) { task_set.tasks.first }
     it "is not found" do
-      expect{delete :destroy, {:id => task.to_param}, valid_session}.to\
+      expect{delete :destroy, params: {:id => task.to_param}}.to\
         raise_error(ActionController::UrlGenerationError)
     end
   end

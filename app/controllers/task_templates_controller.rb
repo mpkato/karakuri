@@ -65,7 +65,7 @@ class TaskTemplatesController < ApplicationController
   # POST /task_templates/preview
   def preview
     @task_template = TaskTemplate.new(task_template_params)
-    render text: @task_template.preview
+    render plain: @task_template.preview
   end
 
   private

@@ -1,6 +1,6 @@
 class AssignsController < ApplicationController
   before_action :authenticate_user!
-  before_filter :set_assign, only: [:show, :destroy]
+  before_action :set_assign, only: [:show, :destroy]
 
   def index
     @task_set = TaskSet.includes(assigns: :user).find(params[:task_set_id])
